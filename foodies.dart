@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:namer_app/main.dart';
 
 void main() => runApp(MyApp());
 
