@@ -117,26 +117,24 @@ class MyHomePage extends StatelessWidget {
                   ),
                 ),
                 BannerArea(),
-                Container(
-                  child: FutureBuilder(
-                    initialData: <Widget>[Text(" ")],
-                    future: createList(),
-                    builder: (context, snapshot){
-                      if(snapshot.hasData){
-                        return Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: ListView(
-                            primary: false,
-                            shrinkWrap: true,
-                            children: snapshot.data!,
-                          ),
-                        );
-                      }
-                      else {
-                        return CircularProgressIndicator();
-                      }
+                FutureBuilder(
+                  initialData: <Widget>[Text(" ")],
+                  future: createList(),
+                  builder: (context, snapshot){
+                    if(snapshot.hasData){
+                      return Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: ListView(
+                          primary: false,
+                          shrinkWrap: true,
+                          children: snapshot.data!,
+                        ),
+                      );
                     }
-                  ),
+                    else {
+                      return CircularProgressIndicator();
+                    }
+                  }
                 ),
               ],
             ),
@@ -167,55 +165,53 @@ class BannerArea extends StatelessWidget{
     for(int i = 0; i < bannerItems.length; i++){
       var bannerView = Padding(
         padding: const EdgeInsets.all(10.0),
-        child: Container(
-          child: Stack(
-            fit: StackFit.expand,
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20.0),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black38,
-                      offset: Offset(4.0, 4.0),
-                      blurRadius: 5.0,
-                      spreadRadius: 1.0,
-                    ),
-                  ],
-                ),
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20.0),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black38,
+                    offset: Offset(4.0, 4.0),
+                    blurRadius: 5.0,
+                    spreadRadius: 1.0,
+                  ),
+                ],
               ),
-
-              ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                child: Image.asset(bannerImages[i],
-                fit: BoxFit.cover,
-                ),
+            ),
+        
+            ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(20.0)),
+              child: Image.asset(bannerImages[i],
+              fit: BoxFit.cover,
               ),
-
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(20.0),),
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [Colors.transparent, Colors.black],
-                    ),
-                ),
+            ),
+        
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(20.0),),
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [Colors.transparent, Colors.black],
+                  ),
               ),
-
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(bannerItems[i], style: TextStyle(fontSize: 25.0, color: Colors.white),),
-                    Text("for free if you can run", style: TextStyle(fontSize: 14.0, color: Colors.white),),
-                  ],
-                ),
+            ),
+        
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(bannerItems[i], style: TextStyle(fontSize: 25.0, color: Colors.white),),
+                  Text("for free if you can run", style: TextStyle(fontSize: 14.0, color: Colors.white),),
+                ],
               ),
-            ],
-          ), 
+            ),
+          ],
         ),
       );
 
